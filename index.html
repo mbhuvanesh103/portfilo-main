@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Bhuvanesh M — AI & Web Developer Portfolio" />
+  <title>Bhuvanesh M | AI & Web Developer</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* ---------- Base Styling ---------- */
+    :root {
+      --primary: #58a6ff;
+      --secondary: #238636;
+      --bg-dark: #0d1117;
+      --bg-card: #161b22;
+      --text-light: #e6edf3;
+      --text-muted: #a1a1aa;
+      --border: #30363d;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text-light);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, strong {
+      color: #fff;
+    }
+
+    main {
+      width: 90%;
+      max-width: 1100px;
+      margin: auto;
+      padding-bottom: 60px;
+    }
+
+    a {
+      color: var(--primary);
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .muted {
+      color: var(--text-muted);
+    }
+
+    /* ---------- Navigation ---------- */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 8%;
+      background-color: #161b22;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    nav a {
+      margin-left: 24px;
+      font-weight: 500;
+      color: #c9d1d9;
+      position: relative;
+    }
+
+    nav a:hover {
+      color: var(--primary);
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -5px;
+      left: 0;
+      background-color: var(--primary);
+      transition: width 0.3s ease;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--text-light);
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    /* ---------- Hero ---------- */
+    .hero {
+      padding: 100px 0 60px;
+      text-align: center;
+      position: relative;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 50% 50%, rgba(88, 166, 255, 0.1) 0%, transparent 70%);
+      z-index: -1;
+    }
+
+    .hero h1 {
+      font-size: 2.8rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      line-height: 1.2;
+    }
+
+    .hero .lead {
+      color: var(--text-muted);
+      max-width: 700px;
+      margin: 20px auto 30px;
+      font-size: 1.2rem;
+    }
+
+    .highlight {
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 700;
+    }
+
+    .cta-row {
+      margin-top: 30px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 24px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background-color: transparent;
+      color: #fff;
+      margin-right: 10px;
+      margin-bottom: 10px;
+      transition: all 0.3s ease;
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background-color: #21262d;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn-primary {
+      background-color: var(--secondary);
+      border: none;
+    }
+
+    .btn-primary:hover {
+      background-color: #2ea043;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(35, 134, 54, 0.3);
+    }
+
+    /* ---------- Section ---------- */
+    section {
+      margin-top: 80px;
+      scroll-margin-top: 80px;
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 30px;
+      position: relative;
+      display: inline-block;
+    }
+
+    h2::after {
+      content: '';
+      position: absolute;
+      width: 60%;
+      height: 3px;
+      bottom: -8px;
+      left: 0;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      border-radius: 3px;
+    }
+
+    /* ---------- Project Cards ---------- */
+    .projects {
+      display: grid;
+      gap: 25px;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+
+    .card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 25px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      border-color: var(--primary);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .card h3 {
+      margin-bottom: 12px;
+      font-size: 1.3rem;
+    }
+
+    .tags {
+      margin-top: 15px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tag {
+      background-color: #21262d;
+      color: var(--primary);
+      padding: 5px 10px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+
+    .card-link {
+      display: inline-flex;
+      align-items: center;
+      margin-top: 15px;
+      font-weight: 500;
+    }
+
+    .card-link i {
+      margin-left: 5px;
+      transition: transform 0.3s ease;
+    }
+
+    .card-link:hover i {
+      transform: translateX(3px);
+    }
+
+    /* ---------- Skills Section ---------- */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .skill-category {
+      background-color: var(--bg-card);
+      border-radius: 12px;
+      padding: 25px;
+      border: 1px solid var(--border);
+    }
+
+    .skill-category h3 {
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+    }
+
+    .skill-category h3 i {
+      margin-right: 10px;
+      color: var(--primary);
+    }
+
+    .skill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .skill-item {
+      background-color: #21262d;
+      padding: 8px 15px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+    }
+
+    .skill-item:hover {
+      background-color: var(--primary);
+      color: #fff;
+      transform: translateY(-2px);
+    }
+
+    /* ---------- About Section ---------- */
+    .about-content {
+      max-width: 800px;
+    }
+
+    .about-content p {
+      margin-bottom: 20px;
+    }
+
+    /* ---------- Contact Section ---------- */
+    .contact-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .contact-card {
+      background-color: var(--bg-card);
+      border-radius: 12px;
+      padding: 20px;
+      flex: 1;
+      min-width: 200px;
+      text-align: center;
+      border: 1px solid var(--border);
+      transition: all 0.3s ease;
+    }
+
+    .contact-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--primary);
+    }
+
+    .contact-card i {
+      font-size: 2rem;
+      margin-bottom: 15px;
+      color: var(--primary);
+    }
+
+    /* ---------- Footer ---------- */
+    footer {
+      text-align: center;
+      padding: 40px;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      background-color: var(--bg-dark);
+    }
+
+    /* ---------- Animations ---------- */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .fade-in {
+      animation: fadeIn 0.8s ease forwards;
+    }
+
+    .delay-1 { animation-delay: 0.2s; }
+    .delay-2 { animation-delay: 0.4s; }
+    .delay-3 { animation-delay: 0.6s; }
+
+    /* ---------- Responsive Design ---------- */
+    @media (max-width: 768px) {
+      header {
+        padding: 15px 5%;
+      }
+      
+      .mobile-menu-btn {
+        display: block;
+      }
+      
+      nav {
+        position: fixed;
+        top: 70px;
+        right: -100%;
+        width: 80%;
+        height: calc(100vh - 70px);
+        background-color: var(--bg-card);
+        flex-direction: column;
+        align-items: center;
+        padding-top: 40px;
+        transition: right 0.3s ease;
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
+      }
+      
+      nav.active {
+        right: 0;
+      }
+      
+      nav a {
+        margin: 15px 0;
+        font-size: 1.1rem;
+      }
+      
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+      
+      .hero .lead {
+        font-size: 1.1rem;
+      }
+      
+      .projects {
+        grid-template-columns: 1fr;
+      }
+      
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+      
+      .btn {
+        display: block;
+        width: 100%;
+        margin-right: 0;
+      }
+      
+      .contact-card {
+        min-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="logo">BM</div>
+    <button class="mobile-menu-btn" id="mobileMenuBtn">
+      <i class="fas fa-bars"></i>
+    </button>
+    <nav id="mainNav">
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+      <a href="https://github.com/mbhuvanesh103" target="_blank">GitHub</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+      <h1 class="fade-in">Hi — I'm <span class="highlight">Bhuvanesh M</span>,<br>I build AI & full-stack web apps.</h1>
+      <p class="lead fade-in delay-1">
+        B.Tech AI & DS student | Python, Java, DSA | Full Stack Development in progress | Passionate about building AI-driven and web solutions.
+      </p>
+      <div class="cta-row fade-in delay-2">
+        <a href="#work" class="btn btn-primary">See my work</a>
+        <a href="#contact" class="btn">Contact me</a>
+      </div>
+    </section>
+
+    <!-- Featured Projects -->
+    <section id="work" aria-labelledby="work-heading">
+      <h2 id="work-heading" class="fade-in">Featured Projects</h2>
+      <div class="projects">
+        <article class="card fade-in delay-1">
+          <h3>AI-Powered Resume Analyzer</h3>
+          <p class="muted">
+            Python, Streamlit, Google Gemini AI, pdfplumber, Tesseract OCR — Resume analysis and skill improvement suggestions.
+          </p>
+          <div class="tags">
+            <span class="tag">Python</span>
+            <span class="tag">AI</span>
+            <span class="tag">Streamlit</span>
+            <span class="tag">NLP</span>
+          </div>
+          <a href="https://github.com/mbhuvanesh103/project-ai-resume-scanner" target="_blank" class="card-link">
+            View Project <i class="fas fa-arrow-right"></i>
+          </a>
+        </article>
+
+        <article class="card fade-in delay-2">
+          <h3>BERT-Based Sentiment Analysis</h3>
+          <p class="muted">
+            Python, PyTorch, Hugging Face Transformers — Classify text sentiment as positive, neutral, or negative.
+          </p>
+          <div class="tags">
+            <span class="tag">Python</span>
+            <span class="tag">BERT</span>
+            <span class="tag">NLP</span>
+            <span class="tag">PyTorch</span>
+          </div>
+          <a href="https://github.com/mbhuvanesh103/Sentiment-Analysis" target="_blank" class="card-link">
+            View Project <i class="fas fa-arrow-right"></i>
+          </a>
+        </article>
+
+        <article class="card fade-in delay-3">
+          <h3>Fake News Detection System</h3>
+          <p class="muted">
+            Python, NLP, scikit-learn — Detect real vs fake news using text classification models.
+          </p>
+          <div class="tags">
+            <span class="tag">Python</span>
+            <span class="tag">NLP</span>
+            <span class="tag">ML</span>
+            <span class="tag">scikit-learn</span>
+          </div>
+          <a href="https://github.com/mbhuvanesh103/Fake-News-Detection-System" target="_blank" class="card-link">
+            View Project <i class="fas fa-arrow-right"></i>
+          </a>
+        </article>
+      </div>
+    </section>
+
+    <!-- About Me -->
+    <section id="about">
+      <h2 class="fade-in">About Me</h2>
+      <div class="about-content">
+        <p class="muted fade-in delay-1">
+          I'm <strong>Bhuvanesh M</strong>, an aspiring AI & Full-Stack Developer passionate about building intelligent, user-friendly applications.
+          I'm pursuing <strong>B.Tech in Artificial Intelligence & Data Science</strong> and currently advancing my knowledge through
+          <strong>Simplilearn's Machine Learning program</strong> and the <strong>freeCodeCamp web development roadmap</strong>.
+        </p>
+        <p class="muted fade-in delay-2">
+          I enjoy exploring how AI can solve real-world problems — from automating workflows to enhancing decision-making.
+          My goal is to become a <strong>Machine Learning Engineer</strong> capable of creating ethical, scalable AI solutions.
+        </p>
+        <div class="fade-in delay-3">
+          <a href="resume.pdf" class="btn btn-primary" target="_blank">
+            <i class="fas fa-download"></i> Download Resume
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+      <h2 class="fade-in">Skills & Tools</h2>
+      <div class="skills-grid">
+        <article class="skill-category fade-in delay-1">
+          <h3><i class="fas fa-code"></i> Languages</h3>
+          <div class="skill-list">
+            <span class="skill-item">Python</span>
+            <span class="skill-item">Java</span>
+            <span class="skill-item">HTML</span>
+            <span class="skill-item">CSS</span>
+            <span class="skill-item">JavaScript</span>
+            <span class="skill-item">SQL</span>
+          </div>
+        </article>
+
+        <article class="skill-category fade-in delay-2">
+          <h3><i class="fas fa-cogs"></i> Frameworks & Libraries</h3>
+          <div class="skill-list">
+            <span class="skill-item">TensorFlow</span>
+            <span class="skill-item">PyTorch</span>
+            <span class="skill-item">scikit-learn</span>
+            <span class="skill-item">Pandas</span>
+            <span class="skill-item">NumPy</span>
+            <span class="skill-item">Streamlit</span>
+            <span class="skill-item">Hugging Face</span>
+          </div>
+        </article>
+
+        <article class="skill-category fade-in delay-3">
+          <h3><i class="fas fa-tools"></i> Tools & Platforms</h3>
+          <div class="skill-list">
+            <span class="skill-item">GitHub</span>
+            <span class="skill-item">Google Colab</span>
+            <span class="skill-item">VS Code</span>
+            <span class="skill-item">Jupyter</span>
+            <span class="skill-item">Simplilearn</span>
+            <span class="skill-item">freeCodeCamp</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+      <h2 class="fade-in">Get in Touch</h2>
+      <p class="muted fade-in delay-1">
+        I'm always open to collaborations, projects, or discussions about AI and full-stack development. Let's connect!
+      </p>
+      <div class="contact-options fade-in delay-2">
+        <div class="contact-card">
+          <i class="fas fa-envelope"></i>
+          <h3>Email</h3>
+          <a href="mailto:bhuvaneshm03@gmail.com">bhuvaneshm103@gmail.com</a>
+        </div>
+        <div class="contact-card">
+          <i class="fab fa-linkedin"></i>
+          <h3>LinkedIn</h3>
+          <a href="https://www.linkedin.com/in/bhuvaneshm03/" target="_blank">mbhuvanesh103</a>
+        </div>
+        <div class="contact-card">
+          <i class="fab fa-github"></i>
+          <h3>GitHub</h3>
+          <a href="https://github.com/mbhuvanesh103" target="_blank">mbhuvanesh103</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    © 2025 Bhuvanesh M — Built with ❤️ using HTML & CSS
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mainNav = document.getElementById('mainNav');
+    
+    mobileMenuBtn.addEventListener('click', () => {
+      mainNav.classList.toggle('active');
+      mobileMenuBtn.innerHTML = mainNav.classList.contains('active') 
+        ? '<i class="fas fa-times"></i>' 
+        : '<i class="fas fa-bars"></i>';
+    });
+    
+    // Close mobile menu when clicking on a link
+    document.querySelectorAll('nav a').forEach(link => {
+      link.addEventListener('click', () => {
+        mainNav.classList.remove('active');
+        mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+      });
+    });
+    
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute('href');
+        if(targetId === '#') return;
+        
+        const targetElement = document.querySelector(targetId);
+        if(targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 80,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+    
+    // Fade in animation on scroll
+    const fadeElements = document.querySelectorAll('.fade-in');
+    
+    const fadeInOnScroll = () => {
+      fadeElements.forEach(element => {
+        const elementTop = element.getBoundingClientRect().top;
+        const elementVisible = 150;
+        
+        if(elementTop < window.innerHeight - elementVisible) {
+          element.style.opacity = 1;
+          element.style.transform = 'translateY(0)';
+        }
+      });
+    };
+    
+    // Set initial state for fade elements
+    fadeElements.forEach(element => {
+      element.style.opacity = 0;
+      element.style.transform = 'translateY(20px)';
+      element.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+    });
+    
+    window.addEventListener('scroll', fadeInOnScroll);
+    // Trigger once on load
+    window.addEventListener('load', fadeInOnScroll);
+  </script>
+
+</body>
+</html>
